@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+List lombok = [
+        "org.projectlombok:lombok:1.18.2"
+]
+
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.16'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compileOnly lombok
+}
