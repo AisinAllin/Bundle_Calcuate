@@ -28,7 +28,7 @@ public abstract class Bundle {
     public void input(Bundle bundle) {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("please input the number of " + bundle.getType() + " : ");
+        System.out.print("please input the number of  " + bundle.getType() + " : ");
         bundle.need = input.nextInt();
     }
 
