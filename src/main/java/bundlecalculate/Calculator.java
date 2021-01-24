@@ -5,14 +5,14 @@ import java.util.Iterator;
 
 public class Calculator {
 
-    public int flag = 0;
-
-    public void Calculator(Bundle bundle) {
-        int bun[] = new int[bundle.bundleNum];
-        Double bunPrice[] = new Double[bundle.bundleNum];
-        Double dp[] = new Double[bundle.need];
+    public void calculator(Bundle bundle) {
+        int[] bun = new int[bundle.bundleNum];
+        Double[] bunPrice = new Double[bundle.bundleNum];
+        Double[] dp = new Double[bundle.need];
 
         Iterator<Integer> iter = bundle.bundleCombo.keySet().iterator();
+        int flag = 0;
+
         while (iter.hasNext()) {
             int key = iter.next();
             Double value = bundle.bundleCombo.get(key);

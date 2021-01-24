@@ -3,7 +3,7 @@ package bundlecalculate;
 public class Output {
     public void output(Bundle bundle) {
         System.out.println("———————————————————————————————————————-———————————————————————————");
-        System.out.println(bundle.getType() + " 的最低价格：" + bundle.min);
+        System.out.println(" The lowest price of " + bundle.getType() + " is " + bundle.min);
         System.out.println("———————————————————————————————————————-———————————————————————————");
     }
 }

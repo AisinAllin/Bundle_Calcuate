@@ -14,6 +14,7 @@ public class Input {
 
         System.out.print("Number of combinations of " + bundle.type + " types: ");
         bundle.setBundleNum(input.nextInt());
+        System.out.println();
 
         for (int i = 0; i < bundle.bundleNum; i++) {
             int num;
@@ -35,7 +36,7 @@ public class Input {
 //        bundle.bundleCombo.put(5, 450.0);
 //        bundle.bundleCombo.put(10, 800.0);
 
-        new Calculator().Calculator(bundle);
+        new Calculator().calculator(bundle);
 
     }
 }
