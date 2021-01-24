@@ -15,6 +15,5 @@ public class Bundle {
     public double min = Double.MAX_VALUE;
 
     public Bundle() {
-
     }
 }
