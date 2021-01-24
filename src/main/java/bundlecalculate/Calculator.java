@@ -8,7 +8,7 @@ public class Calculator {
     public void calculator(Bundle bundle) {
         int[] bun = new int[bundle.bundleNum];
         Double[] bunPrice = new Double[bundle.bundleNum];
-        Double[] dp = new Double[bundle.need];
+        Double[] dp = new Double[bundle.need + 1];
 
         Iterator<Integer> iter = bundle.bundleCombo.keySet().iterator();
         int flag = 0;
@@ -34,23 +34,24 @@ public class Calculator {
             }
         }
 
-        for (int j = 0; j < bun.length; j++) {
-            for (int i = bundle.need - 1; i >= 0; i--) {
+        for (int i = 1; i < bundle.need + 1; i++) {
+            for (int j = 0; j < bun.length; j++) {
                 if (i - bun[j] >= 0) {
                     dp[i] = Math.min(dp[i - bun[j]] + bunPrice[j], dp[i]);
                 } else {
-                    dp[i] = dp[i] + bun[0];
+                    dp[i] = dp[i];
                 }
             }
         }
 
-//        for (int i = 0; i < dp.length; i++){
+        bundle.min = dp[bundle.need];
+//        for (int i = 0; i < dp.length; i++) {
 //            bundle.min = bundle.min < dp[i] ? bundle.min : dp[i];
 //        }
-//        System.out.println(bundle.min+"\n");
-//
+//        System.out.println(bundle.min + "\n");
+////
 //        for (int i = 0; i < dp.length; i++) {
-//            System.out.println(dp[i]+ " ");
+//            System.out.println(i + "=" + dp[i] + " ");
 //        }
 
         new Output().output(bundle);
