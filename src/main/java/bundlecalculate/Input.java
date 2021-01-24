@@ -28,9 +28,9 @@ public class Input {
         }
 
         //test
-
+//
 //        bundle.setType("img");
-//        bundle.setNeed(11);
+//        bundle.setNeed(21);
 //        bundle.setBundleNum(2);
 //
 //        bundle.bundleCombo.put(5, 450.0);
