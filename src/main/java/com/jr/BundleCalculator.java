@@ -13,8 +13,8 @@ public class BundleCalculator {
         FilledOrder filledOrder = new FilledOrder();
         Map<Integer, Integer> map = new HashMap<>();
 
+//Calculate the lowest price
         double[] dp = new double[stats + 1];
-
         Arrays.fill(dp, Double.MAX_VALUE);
         dp[0] = 0;
 
@@ -26,12 +26,13 @@ public class BundleCalculator {
             }
         }));
 
+//Calculate the corresponding situation
         Double[][] bundleSelected = new Double[mediaBundleList.size() + 1][target.get(0).getTargetNumber() + 1];
 
-        for (int i = 0; i < mediaBundleList.size() + 1; i++) {
+        for (int i = 0; i < mediaBundleList.size() + 1; i++) {//init array -> 0.0
             bundleSelected[i][0] = 0.0;
         }
-        for (int j = 0; j < target.get(0).getTargetNumber() + 1; j++) {
+        for (int j = 0; j < target.get(0).getTargetNumber() + 1; j++) {//init array -> 0.0
             bundleSelected[0][j] = 0.0;
         }
 
@@ -53,15 +54,14 @@ public class BundleCalculator {
         int a = target.get(0).getTargetNumber();
 
         for (int i = mediaBundleList.size(); i > 0; i--) {
-
             if (bundleSelected[i][a] > bundleSelected[i - 1][a]) {
                 x[i - 1] = 1;
                 a -= mediaBundleList.get(i - 1).getBundleNum();
             }
         }
 
+//output
         filledOrder.filedOrderList.add(FilledOrderItem.builder().minPrice(dp[stats]).requireType(target.get(0).getTargetType()).bundleSelected(x).build());
-
         new OrderOutput().output(target,filledOrder.filedOrderList, mediaBundleList);
     }
 }
