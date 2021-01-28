@@ -1,24 +1,21 @@
 package com.jr;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 public class BundleCalculator {
-    public void calculate(List<SubmissionBundle> mediaBundleList, List<OrderItem> target) {
+    public FilledOrder calculate(List<SubmissionBundle> mediaBundleList, List<OrderItem> target) {
 
-        int stats = target.get(0).getTargetNumber();
+        int targetNumber = target.get(0).getTargetNumber();
         FilledOrder filledOrder = new FilledOrder();
-        Map<Integer, Integer> map = new HashMap<>();
 
 //Calculate the lowest price
-        double[] dp = new double[stats + 1];
+        double[] dp = new double[targetNumber + 1];
         Arrays.fill(dp, Double.MAX_VALUE);
         dp[0] = 0;
 
-        IntStream.range(1, stats + 1).forEach(i -> IntStream.range(0, mediaBundleList.size()).forEach(j -> {
+        IntStream.range(1, targetNumber + 1).forEach(i -> IntStream.range(0, mediaBundleList.size()).forEach(j -> {
             if (i >= mediaBundleList.get(j).getBundleNum() && dp[i - mediaBundleList.get(j).getBundleNum()] != Double.MAX_VALUE) {
                 if (dp[i - mediaBundleList.get(j).getBundleNum()] + mediaBundleList.get(j).getBundlePrice() < dp[i]) {
                     dp[i] = dp[i - mediaBundleList.get(j).getBundleNum()] + mediaBundleList.get(j).getBundlePrice();
@@ -61,7 +58,7 @@ public class BundleCalculator {
         }
 
 //output
-        filledOrder.filedOrderList.add(FilledOrderItem.builder().minPrice(dp[stats]).requireType(target.get(0).getTargetType()).bundleSelected(x).build());
-        new OrderOutput().output(target,filledOrder.filedOrderList, mediaBundleList);
+        filledOrder.filedOrderList.add(FilledOrderItem.builder().minPrice(dp[targetNumber]).requireType(target.get(0).getTargetType()).bundleSelected(x).build());
+        return filledOrder;
     }
 }
